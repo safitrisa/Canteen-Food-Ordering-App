@@ -1,4 +1,4 @@
-package com.example.loginandsignup
+package com.example.canteenfoodorderingapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

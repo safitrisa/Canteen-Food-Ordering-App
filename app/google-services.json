@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1093076502705:android:c7aae3da4324db53f4fa90",
+        "android_client_info": {
+          "package_name": "com.example.canteenfoodorderingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRcuGJXYATBi9-MX4cGE-kxDRO-wPjC1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1093076502705:android:c670599ceaa26104f4fa90",
         "android_client_info": {
           "package_name": "com.example.loginandsignup"

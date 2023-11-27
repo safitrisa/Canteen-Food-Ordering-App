@@ -1,4 +1,4 @@
-package com.example.loginandsignup
+package com.example.canteenfoodorderingapp
 
 import org.junit.Test
 
