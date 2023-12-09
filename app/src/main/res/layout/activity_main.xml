@@ -15,7 +15,7 @@
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:id="@+id/navbar_umum"
-        app:cnb_menuResource="@menu/navbar_pembeli"
+        android:id="@+id/navbar_menu"
+        app:cnb_menuResource="@menu/navbar_menu"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

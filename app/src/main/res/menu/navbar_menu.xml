@@ -5,23 +5,21 @@
         android:title="Home"
         android:icon="@drawable/icon_home"
         android:id="@+id/home"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="#FF9800"/>
     <item
         android:title="History"
         android:icon="@drawable/icon_history"
         android:id="@+id/history"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="#FF9800"/>
     <item
         android:title="Status Pembelian"
         android:icon="@drawable/icon_status"
         android:id="@+id/status"
-        app:cnb_iconColor="@color/white"/>
-
+        app:cnb_iconColor="#FF9800"/>
     <item
         android:title="Profil"
         android:icon="@drawable/icon_profil"
         android:id="@+id/profile"
-        app:cnb_iconColor="@color/white"/>
-
+        app:cnb_iconColor="#FF9800"/>
 </menu>
 
