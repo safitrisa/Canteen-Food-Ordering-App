@@ -13,7 +13,7 @@ import com.google.firebase.auth.auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-
+// belum ditambahkan no telp
 class Profile : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreateView(
