@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Home"
-    android:background="@color/white">
-    <LinearLayout
+    android:layout_height="match_parent">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/textViewHeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="8dp">
-        <ImageView
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:id="@+id/home"
-            android:layout_marginRight="8dp"
-            android:src="@drawable/icon_home"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selamat Datang"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="?android:attr/colorPrimary"
+        android:textColor="#ffffff" />
+
+    <!-- Deskripsi -->
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewHeader"
+        android:text="Anda dapat memilih menu makanan dan minuman yang tersedia dengan cara klik tombol 'Pilih Menu'."
+        android:padding="16dp" />
+
+    <!-- Menu -->
+    <LinearLayout
+        android:id="@+id/linearMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDescription"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Menu Item 1 - Pilih Menu -->
+        <Button
+            android:id="@+id/btnPilihMenu"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ini_home"
-                android:text="Ini adalah beranda:"
-                android:textSize="20sp"
-                android:textColor="@color/black"/>
-        </LinearLayout>
+            android:text="Pilih Menu"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginBottom="8dp"/>
     </LinearLayout>
-</FrameLayout>
+
+</RelativeLayout>
