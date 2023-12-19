@@ -1,31 +1,24 @@
+package com.example.canteenfoodorderingapp
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MenuMakanActivity : AppCompatActivity() {
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var menuAdapter: MenuAdapter
-    private lateinit var menuItemList: List<MenuItem>
-
+    lateinit var recyclerView: RecyclerView
+    lateinit var adapter: MakanMinumAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_makan)
-
-        // Inisialisasi RecyclerView
-        recyclerView = findViewById(R.id.userList)
+        init()
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Inisialisasi data dummy (gantilah dengan data sesuai kebutuhan Anda)
-        menuItemList = listOf(
-            MenuItem("Nama Item 1", "Deskripsi Item 1"),
-            MenuItem("Nama Item 2", "Deskripsi Item 2"),
-            MenuItem("Nama Item 3", "Deskripsi Item 3")
-        )
-
-        // Inisialisasi adapter dan menghubungkannya dengan RecyclerView
-        menuAdapter = MenuAdapter(menuItemList)
-        recyclerView.adapter = menuAdapter
+        recyclerView.adapter = adapter
+    }
+    private fun init(){
+        recyclerView = findViewById(R.id.barangList)
+        var data = ArrayList<ItemMakanMinum>()
+        data.add(ItemMakanMinum("Toko A","Nasi Goreng", "15.000" , "20"))
+        adapter = MakanMinumAdapter(data)
     }
 }
