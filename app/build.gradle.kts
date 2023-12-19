@@ -60,8 +60,5 @@ dependencies {
     // library navbar
     implementation("com.github.ismaeldivita:chip-navigation-bar:1.4.0")
 
-    // glide image upload
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
 }
