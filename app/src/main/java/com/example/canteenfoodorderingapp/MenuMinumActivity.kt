@@ -38,7 +38,7 @@ class MenuMinumActivity : AppCompatActivity() {
                         ArrayList.add(barang!!)
                     }
 
-                    RecyclerView.adapter = MakanMinumAdapter(ArrayList)
+                    RecyclerView.adapter = MinumAdapter(ArrayList)
                 }
             }
 

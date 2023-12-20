@@ -28,9 +28,6 @@
             android:name=".HalamanMenu"
             android:exported="false" />
         <activity
-            android:name=".HalamanPilihMenu"
-            android:exported="false" />
-        <activity
             android:name=".SignUpActivity"
             android:exported="true">
             <intent-filter>

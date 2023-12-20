@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MakanMinumAdapter( private val data: ArrayList<ItemMakanMinum>): RecyclerView.Adapter<MakanMinumAdapter.MakanMinumViewHolder>(){
+class MinumAdapter(private val data: ArrayList<ItemMakanMinum>): RecyclerView.Adapter<MinumAdapter.MakanMinumViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakanMinumViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_makan, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_minum, parent, false)
         return MakanMinumViewHolder(itemView)
     }
     override fun getItemCount(): Int {
