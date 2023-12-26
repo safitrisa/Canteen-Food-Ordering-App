@@ -23,20 +23,19 @@ class Profile : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val user = Firebase.auth.currentUser
         var uid: String? = null
-        var name: String? = null
         var email: String? = null
 
         // Get the user's UID
         user?.let {
             uid = it.uid
-            name = it.displayName // nama belum ditambahkan, perlu menambah form input SignIn
             email = it.email
         }
 
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val namaUser = root.findViewById<TextView>(R.id.nama_user)
         val emailUser = root.findViewById<TextView>(R.id.email_user)
-        val signOut: Button = root.findViewById(R.id.signout)
+        val noTelpUser = root.findViewById<TextView>(R.id.no_telp_user)
+        val signOut = root.findViewById<TextView>(R.id.signout)
         signOut.setOnClickListener {
             firebaseAuth.signOut()
         }
@@ -50,7 +49,10 @@ class Profile : Fragment() {
                 if (snapshot.exists()) {
                     val userData = snapshot.value as HashMap<String, Any>
                     val nama = userData["nama"].toString()
+                    val notelp = userData["noTelp"].toString()
                     namaUser.text = "Name : $nama"
+                    emailUser.text = "Email :\n$email"
+                    noTelpUser.text = "No Telp : $notelp"
                 } else {
                     namaUser.text = "Name : Not found"
                 }
@@ -61,8 +63,6 @@ class Profile : Fragment() {
             Log.e("ProfileFragment", "No user logged in")
         }
 
-        // Set the email of the user
-        emailUser.text = "Email : $email"
         return root
     }
 }
