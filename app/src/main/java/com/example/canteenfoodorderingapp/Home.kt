@@ -37,9 +37,7 @@ class Home: Fragment() {
 
         // Retrieve and display user data from database
         if (uid != null) {
-            val databaseReference = FirebaseDatabase.getInstance().getReference("dataUsers").child(
-                uid!!
-            )
+            val databaseReference = FirebaseDatabase.getInstance().getReference("dataUsers").child(uid!!)
             databaseReference.get().addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
                     val userData = snapshot.value as HashMap<String, Any>

@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.database.FirebaseDatabase
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -63,8 +65,9 @@ class PesananAdapter(private val data: ArrayList<pesanan>) :
                 val formattedString = localDate.format(formatter)
                 val orderId = ordersRef.push().key ?: return@setPositiveButton
                 val invoice = "INV/$formattedString/CFOA/$orderId".replace(" ", "")
+                val uid = Firebase.auth.currentUser?.uid
 
-                val order = riwayat(orderId, namaPesananDipilih, quantity.toInt(), invoice)
+                val order = riwayat(orderId, uid, namaPesananDipilih, quantity.toInt(), invoice)
 
                 val orderIdToRemove = dataPesananDipilih.id
 

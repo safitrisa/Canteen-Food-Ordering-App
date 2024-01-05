@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.database.*
 
 class StatusPembelian : Fragment() {
-    private lateinit var dbref: DatabaseReference
+    private lateinit var dbref: Query
     private lateinit var recyclerView: RecyclerView
-    private lateinit var pesananList: ArrayList<pesanan> // Assuming Pesanan is the correct data class
+    private lateinit var pesananList: ArrayList<pesanan> // Renamed to Pesanan (PascalCase)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,14 +24,14 @@ class StatusPembelian : Fragment() {
         recyclerView = root.findViewById(R.id.pesananList)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-
         pesananList = arrayListOf()
         getBarangData()
         return root
     }
 
     private fun getBarangData() {
-        dbref = FirebaseDatabase.getInstance().getReference("dataPesanan")
+        val uid = Firebase.auth.currentUser?.uid
+        dbref = FirebaseDatabase.getInstance().getReference("dataPesanan").orderByChild("idBuyer").equalTo(uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -37,15 +39,18 @@ class StatusPembelian : Fragment() {
                     pesananList.clear() // Clear the list before adding new data
                     for (barangSnapshot in snapshot.children) {
                         val pesanan = barangSnapshot.getValue(pesanan::class.java)
-                        pesananList.add(pesanan!!)
+                        pesanan?.let { pesananList.add(it) }
                     }
 
-                    recyclerView.adapter = PesananAdapter(pesananList)
+                    val adapter = recyclerView.adapter as? PesananAdapter
+                    adapter?.notifyDataSetChanged() ?: run {
+                        recyclerView.adapter = PesananAdapter(pesananList)
+                    }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled event if needed
+                // Log the error or show a Toast message
             }
         })
     }

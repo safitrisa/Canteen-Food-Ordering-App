@@ -9,6 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.database.FirebaseDatabase
 
 class MakanAdapter(private val data: ArrayList<ItemMakanMinum>): RecyclerView.Adapter<MakanAdapter.MakanMinumViewHolder>(){
@@ -57,13 +60,20 @@ class MakanAdapter(private val data: ArrayList<ItemMakanMinum>): RecyclerView.Ad
                 val ordersRef = database.getReference("dataPesanan")
                 val dataPesananDipilih = data[position]
                 val namaPesananDipilih = dataPesananDipilih.nama
+                val firebaseAuth = FirebaseAuth.getInstance()
+                val user = Firebase.auth.currentUser
+                var uid: String? = null
 
+                // Get the user's UID
+                user?.let {
+                    uid = it.uid
+                }
 
                 // Create a unique key for the new order
                 val orderId = ordersRef.push().key ?: return@setPositiveButton
 
                 // Create an order object. Assuming you have a data class Order
-                val order = pesanan(orderId, namaPesananDipilih, quantity.toInt(), status = "Diproses")
+                val order = pesanan(orderId, uid, namaPesananDipilih, quantity.toInt(), status = "Diproses")
 
                 // Push the data to Firebase
                 ordersRef.child(orderId).setValue(order)

@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 
 class History : Fragment() {
-    private lateinit var dbref: DatabaseReference
+    private lateinit var dbref: Query
     private lateinit var recyclerView: RecyclerView
     private lateinit var riwayatList: ArrayList<riwayat>
     override fun onCreateView(
@@ -32,7 +35,8 @@ class History : Fragment() {
     }
 
     private fun getBarangData() {
-        dbref = FirebaseDatabase.getInstance().getReference("dataRiwayat")
+        val uid = Firebase.auth.currentUser?.uid
+        dbref = FirebaseDatabase.getInstance().getReference("dataRiwayat").orderByChild("idBuyer").equalTo(uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -42,11 +46,9 @@ class History : Fragment() {
                         val riwayat = barangSnapshot.getValue(riwayat::class.java)
                         riwayatList.add(riwayat!!)
                     }
-
                     recyclerView.adapter = RiwayatAdapter(riwayatList)
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 // Handle onCancelled event if needed
             }
